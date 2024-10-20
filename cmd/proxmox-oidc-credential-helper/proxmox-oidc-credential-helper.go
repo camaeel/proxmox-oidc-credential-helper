@@ -71,7 +71,7 @@ func main() {
 			os.Exit(1)
 		}
 	} else {
-		browser.OutputOpenURL(redirectUrl)
+		fmt.Println(browser.PrintableOpenURL(redirectUrl))
 	}
 
 	select {

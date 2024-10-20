@@ -25,6 +25,6 @@ func OpenURL(url string) error {
 	return exec.Command(cmd, args...).Start()
 }
 
-func OutputOpenURL(url string) {
-	fmt.Printf("# Open this URL in the browser: %s\n", url)
+func PrintableOpenURL(url string) string {
+	return fmt.Sprintf("# Open this URL in the browser: %s", url)
 }
