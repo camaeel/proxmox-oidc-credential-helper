@@ -11,7 +11,7 @@ func TestOidcCallbackHandler(t *testing.T) {
 	inputCode := "1234abc"
 	inputState := "test223"
 
-	cancelFunc := func() { panic("shouldn't happen") }
+	cancelFunc := func() { t.FailNow() }
 	resultChan := make(chan CallbackResult)
 	handlerFunc := oidcCallbackHandlerFactory(cancelFunc, resultChan)
 
