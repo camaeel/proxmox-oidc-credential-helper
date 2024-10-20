@@ -27,21 +27,25 @@ func GetOidcURL(cfg config.Config) (string, error) {
 	req.Header.Add("Accept", "application/json")
 
 	res, err := http.DefaultClient.Do(req)
+
 	if err != nil {
 		return "", err
 	}
 	if res.StatusCode != http.StatusOK {
 		return "", fmt.Errorf("wrong response status: %d", res.StatusCode)
 	}
+
 	defer res.Body.Close()
 	respBody, err := io.ReadAll(res.Body)
 	if err != nil {
 		return "", err
 	}
+
 	output := map[string]string{}
 	err = json.Unmarshal(respBody, &output)
 	if err != nil {
 		return "", err
 	}
+
 	return output["data"], nil
 }
