@@ -1,5 +1,8 @@
 # proxmox-oidc-credential-helper
 
+> **Note:** This repository has been moved to https://github.com/proxmox-oidc-credential-helper/proxmox-oidc-credential-helper/
+
+
 This small utility allows to obtain credentials from Proxmox's UI using OIDC and exports them to the shell as env variables.
 
 ## Instalation
