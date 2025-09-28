@@ -3,7 +3,8 @@ package proxmox
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/camaeel/proxmox-oidc-credential-helper/pkg/config"
+
+	"github.com/proxmox-oidc-credential-helper/proxmox-oidc-credential-helper/pkg/config"
 )
 
 func OutputTicket(cfg config.Config, ticket Ticket) (string, error) {

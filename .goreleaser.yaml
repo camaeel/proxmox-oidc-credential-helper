@@ -101,3 +101,163 @@ snapshot:
 
 #docker_signs:
 #  - artifacts: all
+
+homebrew_casks:
+  - name: proxmox-oidc-credential-helper
+    #alternative_names:
+    #  - myproject@{{ .Version }}
+    #  - myproject@{{ .Major }}
+
+    binary: proxmox-oidc-credential-helper
+
+    # This information will be used to build the URL section of your Cask.
+    #
+    # You can set the template, as well as additional parameters.
+    # These parameters can be used to provide extra headers, cookies, or other
+    # download requirements for your application.
+    # See https://docs.brew.sh/Cask-Cookbook#additional-url-parameters for more details.
+    #
+    # All fields are optional.
+    url:
+      template: "https://github.com/proxmox-oidc-credential-helper/proxmox-oidc-credential-helper/releases/download/{{ .Tag }}/{{ .ArtifactName }}"
+      verified: "github.com/proxmox-oidc-credential-helper/proxmox-oidc-credential-helper/"
+
+      #using: ":homebrew_curl"
+
+    commit_msg_template: "Brew cask update for {{ .ProjectName }} version {{ .Tag }}"
+
+    # Directory inside the repository to put the cask.
+    # Default: Casks
+    directory: Casks
+
+
+    # Your app's homepage.
+    #
+    # Default: inferred from global metadata.
+    homepage: "https://github.com/proxmox-oidc-credential-helper/proxmox-oidc-credential-helper"
+
+    # Your app's description.
+    #
+    # Templates: allowed.
+    # Default: inferred from global metadata.
+    description: "proxmox-oidc-credential-helper utility allows to obtain credentials from Proxmox's UI using OIDC and exports them to the shell as env variables."
+
+    # Setting this will prevent goreleaser to actually try to commit the updated
+    # cask - instead, the cask file will be stored on the dist directory
+    # only, leaving the responsibility of publishing it to the user.
+    # If set to auto, the release will not be uploaded to the homebrew tap
+    # in case there is an indicator for prerelease in the tag e.g. v1.0.0-rc1
+    #
+    # Templates: allowed.
+    skip_upload: auto
+
+
+
+    # Repository to push the generated files to.
+    repository:
+      owner: proxmox-oidc-credential-helper
+      name: homebrew-tap
+      branch: master
+
+      # Optionally a token can be provided, if it differs from the token
+      # provided to GoReleaser
+      #
+      # Templates: allowed.
+      token: "{{ .Env.GORELEASER_TAP_PERSONAL_AUTH_TOKEN }}"
+      # Sets up pull request creation instead of just pushing to the given branch.
+      # Make sure the 'branch' property is different from base before enabling
+      # it.
+      #
+      # This might require a personal access token.
+      pull_request:
+        # Whether to enable it or not.
+        enabled: false
+
+        # Whether to open the PR as a draft or not.
+        draft: true
+
+        # Allows to set a body for the pull request.
+        # If the repository has a pull request template, it will be appended to
+        # this.
+        #
+        # Since: v2.12
+        #body: |
+        #  cc/ @camaeel
+
+
+      # Clone, create the file, commit and push, to a regular Git repository.
+      #
+      # Notice that this will only have any effect if the given URL is not
+      # empty.
+      #git:
+        # The Git URL to push.
+        #
+        # Templates: allowed.
+      #  url: 'ssh://git@myserver.com:repo.git'
+
+        # The SSH private key that should be used to commit to the Git
+        # repository.
+        # This can either be a path or the key contents.
+        #
+        # IMPORTANT: the key must not be password-protected.
+        #
+        # WARNING: do not expose your private key in the configuration file!
+        #
+        # Templates: allowed.
+      #  private_key: '{{ .Env.PRIVATE_KEY_PATH }}'
+
+        # The value to be passed to `GIT_SSH_COMMAND`.
+        # This is mainly used to specify the SSH private key used to pull/push
+        # to the Git URL.
+        #
+        # Default: 'ssh -i {{ .KeyPath }} -o StrictHostKeyChecking=accept-new -F /dev/null'.
+        # Templates: allowed.
+      #  ssh_command: 'ssh -i {{ .Env.KEY }} -o SomeOption=yes'
+
+    # Git author used to commit to the repository.
+    #
+    # Since: v2.11
+    # Default: inferred from global metadata (Since v2.12).
+    commit_author:
+      # Git author name.
+      #
+      # Templates: allowed.
+      name: goreleaserbot
+
+      # Git author email.
+      #
+      # Templates: allowed.
+      email: bot@goreleaser.com
+
+      # Git commit signing configuration.
+      # Only useful if repository is of type 'git'.
+      #
+      # Since: v2.11.
+      #TODO try to implement
+      signing:
+        # Enable commit signing.
+        enabled: false
+
+        # The signing key to use.
+        # Can be a key ID, fingerprint, email address, or path to a key file.
+        #
+        # Templates: allowed.
+        #key: "{{ .Env.GPG_SIGNING_KEY }}"
+
+        # The GPG program to use for signing.
+        #
+        # Templates: allowed.
+        program: gpg2
+
+        # The signature format to use.
+        #
+        # Valid options: openpgp, x509, ssh.
+        # Default: openpgp.
+        format: openpgp
+    hooks:
+      post:
+        # replace foo with the actual binary name
+        install: |
+          if OS.mac?
+            system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{staged_path}/proxmox-oidc-credential-helper"]
+          end

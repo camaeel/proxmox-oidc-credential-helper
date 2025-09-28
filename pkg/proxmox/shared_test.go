@@ -1,9 +1,10 @@
 package proxmox
 
 import (
-	"github.com/camaeel/proxmox-oidc-credential-helper/pkg/config"
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/proxmox-oidc-credential-helper/proxmox-oidc-credential-helper/pkg/config"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestGetCallbackUrl(t *testing.T) {

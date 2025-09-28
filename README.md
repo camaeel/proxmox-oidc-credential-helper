@@ -1,10 +1,19 @@
 # proxmox-oidc-credential-helper
 
+> **Note:** This repository has been moved to https://github.com/proxmox-oidc-credential-helper/proxmox-oidc-credential-helper/
+
+
 This small utility allows to obtain credentials from Proxmox's UI using OIDC and exports them to the shell as env variables.
 
 ## Instalation
 
-### MacOS / Linux
+### With Homebrew
+```shell
+brew tap proxmox-oidc-credential-helper/tap
+brew install proxmox-oidc-credential-helper --cask
+```
+
+### MacOS / Linux - download with curl
 
 ```shell
 architecture=`uname -m`
@@ -13,15 +22,15 @@ if [[ $architecture == "x86_64" ]]; then
 elif [[ $architecture == "aarch64" ]]; then 
   architecture=arm64;
 fi
-LATEST_VERSION=` curl -s https://api.github.com/repos/camaeel/proxmox-oidc-credential-helper/releases/latest | jq -r '.tag_name'`
+LATEST_VERSION=` curl -s https://api.github.com/repos/proxmox-oidc-credential-helper/proxmox-oidc-credential-helper/releases/latest | jq -r '.tag_name'`
 
-wget "https://github.com/camaeel/proxmox-oidc-credential-helper/releases/download/${LATEST_VERSION}/proxmox-oidc-credential-helper_`uname -o`_${architecture}.tar.gz" -O proxmox-oidc-credential-helper.tar.gz
+wget "https://github.com/proxmox-oidc-credential-helper/proxmox-oidc-credential-helper/releases/download/${LATEST_VERSION}/proxmox-oidc-credential-helper_`uname -o`_${architecture}.tar.gz" -O proxmox-oidc-credential-helper.tar.gz
 tar -xzvf proxmox-oidc-credential-helper.tar.gz
 ```
 
 ### Windows
 
-Download binary from releases page & unzip
+Download binary from releases page & unzip or use Homebrew
 
 ## Prerequisites
 

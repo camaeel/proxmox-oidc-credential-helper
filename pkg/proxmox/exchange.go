@@ -4,10 +4,11 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/camaeel/proxmox-oidc-credential-helper/pkg/callback"
-	"github.com/camaeel/proxmox-oidc-credential-helper/pkg/config"
 	"io"
 	"net/http"
+
+	"github.com/proxmox-oidc-credential-helper/proxmox-oidc-credential-helper/pkg/callback"
+	"github.com/proxmox-oidc-credential-helper/proxmox-oidc-credential-helper/pkg/config"
 )
 
 func ExchangeCallbackResultForTicket(cfg config.Config, result callback.CallbackResult) (Ticket, error) {

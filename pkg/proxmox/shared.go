@@ -2,7 +2,8 @@ package proxmox
 
 import (
 	"fmt"
-	"github.com/camaeel/proxmox-oidc-credential-helper/pkg/config"
+
+	"github.com/proxmox-oidc-credential-helper/proxmox-oidc-credential-helper/pkg/config"
 )
 
 func getCallbackUrl(cfg config.Config) string {

@@ -1,4 +1,4 @@
-module github.com/camaeel/proxmox-oidc-credential-helper
+module github.com/proxmox-oidc-credential-helper/proxmox-oidc-credential-helper
 
 go 1.25
 

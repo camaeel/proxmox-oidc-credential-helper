@@ -4,13 +4,14 @@ import (
 	"context"
 	"flag"
 	"fmt"
-	"github.com/camaeel/proxmox-oidc-credential-helper/pkg/browser"
-	"github.com/camaeel/proxmox-oidc-credential-helper/pkg/callback"
-	"github.com/camaeel/proxmox-oidc-credential-helper/pkg/config"
-	"github.com/camaeel/proxmox-oidc-credential-helper/pkg/proxmox"
 	"log/slog"
 	"os"
 	"time"
+
+	"github.com/proxmox-oidc-credential-helper/proxmox-oidc-credential-helper/pkg/browser"
+	"github.com/proxmox-oidc-credential-helper/proxmox-oidc-credential-helper/pkg/callback"
+	"github.com/proxmox-oidc-credential-helper/proxmox-oidc-credential-helper/pkg/config"
+	"github.com/proxmox-oidc-credential-helper/proxmox-oidc-credential-helper/pkg/proxmox"
 )
 
 func main() {

@@ -2,13 +2,14 @@ package proxmox
 
 import (
 	"encoding/json"
-	"github.com/camaeel/proxmox-oidc-credential-helper/pkg/callback"
-	"github.com/camaeel/proxmox-oidc-credential-helper/pkg/config"
-	"github.com/stretchr/testify/assert"
 	"io"
 	"net/http"
 	"net/http/httptest"
 	"testing"
+
+	"github.com/proxmox-oidc-credential-helper/proxmox-oidc-credential-helper/pkg/callback"
+	"github.com/proxmox-oidc-credential-helper/proxmox-oidc-credential-helper/pkg/config"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestExchangeCallbackResultForTicket(t *testing.T) {

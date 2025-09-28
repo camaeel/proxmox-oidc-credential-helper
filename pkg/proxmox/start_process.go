@@ -4,9 +4,10 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/camaeel/proxmox-oidc-credential-helper/pkg/config"
 	"io"
 	"net/http"
+
+	"github.com/proxmox-oidc-credential-helper/proxmox-oidc-credential-helper/pkg/config"
 )
 
 func GetOidcURL(cfg config.Config) (string, error) {
